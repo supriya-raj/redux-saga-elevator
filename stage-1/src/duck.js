@@ -2,37 +2,24 @@ import { delay, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 
 const initialState = {
-  milliseconds: 0
+  floor: 1
 }
 
+//Reducer
 export default function reducer (currentState = initialState, action) {
   switch (action.type) {
-    // case 'reset-clock':
-    //   return {
-    //     ...currentState,
-    //     milliseconds: 0
-    //   }
-    // case 'increment-milliseconds':
-    //   return {
-    //     ...currentState,
-    //     milliseconds: currentState.milliseconds + MINIMUM_MS
-    //   }
-    // case 'decrement-milliseconds':
-    //   if (!currentState.milliseconds) { return currentState }
-
-    //   return {
-    //     ...currentState,
-    //     milliseconds: currentState.milliseconds - MINIMUM_MS
-    //   }
+    case 'change-floor':
+      return {
+        ...currentState,
+        floor: action.floor
+      }
     default:
       return currentState
   }
 }
 
-// // actions
-// export const resetClock = () => ({ type: 'reset-clock' })
-// export const incrementMilliseconds = () => ({ type: 'increment-milliseconds' })
-// export const decrementMilliseconds = () => ({ type: 'decrement-milliseconds' })
+//action creatore
+export const changeFloor = (floor) => ({ type: 'change-floor', floor })
 
 // // saga actions
 // export const startClock = () => ({ type: 'start-clock' })
