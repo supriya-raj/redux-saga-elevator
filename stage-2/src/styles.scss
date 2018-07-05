@@ -1,0 +1,112 @@
+$floor-height: 200px;
+$gap-between-floors: 50px;
+$num-floors: 3;
+$min-floor-wait: 5s;
+$elevator-transit-time: 0.2s;
+
+body {
+	background-color: lightskyblue;
+	margin: 0px;
+}
+
+#app {
+	height: 100vh;
+	position: relative;
+}
+
+.building {
+	width: 400px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: lightgrey;
+}
+
+.elevator {
+	height: $floor-height;
+	width:	150px;
+	position: absolute;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+	background-color: grey;
+	overflow: hidden;
+	&:before {
+		width: 50%;
+		height: 100%;
+		display: inline-block;
+		position: absolute;
+		left: 0px;
+		content: '';
+		background-color: black;
+	}
+	&:after {
+		width: 50%;
+		height: 100%;
+		display: inline-block;
+		position: absolute;
+		right: 0px;
+		content: '';
+		background-color: black;
+	}
+}
+
+.floor {
+	height: $floor-height;
+	width: 100%;
+	position: relative;
+	box-sizing: border-box;
+	margin-top: $gap-between-floors;
+	background-color: lightyellow;
+	&:first-of-type {
+		margin-top: 0px;
+	}
+}
+
+.lift-button {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	font-weight: bold;
+	font-size: 40px;
+	color: white;
+	background-color: black;
+	cursor: pointer;
+}
+
+@mixin elevator-pos {
+  @for $i from 1 through $num-floors {
+    $className: elevator-at-floor-#{$i};
+    $bottom: ($i - 1) * ($floor-height + $gap-between-floors);
+
+    .#{$className} {
+      bottom: #{$bottom};
+      transition: bottom $elevator-transit-time;
+      &:before {
+      	animation: left-door-close-#{$i} $min-floor-wait;
+      }
+      &:after {
+      	animation: right-door-close-#{$i} $min-floor-wait;
+      }
+    }
+
+    @keyframes left-door-close-#{$i} {
+			0% {
+				transform: translateX(-100%);
+			}
+			100% {
+				transform: translateX(0);
+			}
+		}
+
+		@keyframes right-door-close-#{$i} {
+			0% {
+				transform: translateX(100%);
+			}
+			100% {
+				transform: translateX(0);
+			}
+		}
+  }
+}
+
+@include elevator-pos();
