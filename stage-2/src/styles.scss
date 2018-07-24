@@ -37,7 +37,8 @@ body {
 		position: absolute;
 		left: 0px;
 		content: '';
-		background-color: black;
+		background-color: lightcoral;
+		box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 	}
 	&:after {
 		width: 50%;
@@ -46,7 +47,8 @@ body {
 		position: absolute;
 		right: 0px;
 		content: '';
-		background-color: black;
+		background-color: lightcoral;
+		box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 	}
 }
 

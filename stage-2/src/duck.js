@@ -1,11 +1,11 @@
 import { delay, takeLatest } from 'redux-saga'
-import { call, put } from 'redux-saga/effects'
+import { call, put, take } from 'redux-saga/effects'
 
 const initialState = {
   floor: 1
 }
 
-//Reducer
+//Redux Reducer
 export default function reducer (currentState = initialState, action) {
   switch (action.type) {
     case 'change-floor':
@@ -18,15 +18,17 @@ export default function reducer (currentState = initialState, action) {
   }
 }
 
-//action creatore
+//Redux action creators
 export const changeFloor = (floor) => ({ type: 'change-floor', floor })
 
-// // saga actions
-// export const startClock = () => ({ type: 'start-clock' })
-// export const pauseClock = () => ({ type: 'pause-clock' })
-// export const rewindClock = () => ({ type: 'rewind-clock' })
+//Saga Action Creators
+export const changeFloorAndWait = (floor) => ({ type: 'change-floor-and-wait', floor })
 
-// saga
+//Saga Watcher
 export function* rootSaga () {
-  //yield takeLatest(['start-clock', 'pause-clock', 'rewind-clock'], handleClockAction)
+  while (true) {
+    let {floor} = yield take('change-floor-and-wait')
+    yield put(changeFloor(floor));
+    yield (delay,5200);
+  }
 }

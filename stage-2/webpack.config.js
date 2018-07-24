@@ -1,5 +1,5 @@
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   entry: {
     main: './src/main.jsx'
   },

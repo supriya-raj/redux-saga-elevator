@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import {changeFloor} from './duck'
+import {changeFloorAndWait} from './duck'
 import css from './styles.scss';
 
 const FLOORS = [3, 2, 1];
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		changeFloor: (newFloor) => {
-			dispatch(changeFloor(newFloor))
+			dispatch(changeFloorAndWait(newFloor))
 		}
 	}
 }
