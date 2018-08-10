@@ -1,4 +1,4 @@
-import { delay, takeLatest } from 'redux-saga'
+import { delay } from 'redux-saga'
 import { call, put, take } from 'redux-saga/effects'
 
 const initialState = {
@@ -29,6 +29,6 @@ export function* rootSaga () {
   while (true) {
     let {floor} = yield take('change-floor-and-wait')
     yield put(changeFloor(floor));
-    yield (delay,5200);
+    yield call(delay,5200);
   }
 }

@@ -1,6 +1,3 @@
-import { delay, takeLatest } from 'redux-saga'
-import { call, put } from 'redux-saga/effects'
-
 const initialState = {
   floor: 1
 }
@@ -18,15 +15,5 @@ export default function reducer (currentState = initialState, action) {
   }
 }
 
-//action creatore
+//action creators
 export const changeFloor = (floor) => ({ type: 'change-floor', floor })
-
-// // saga actions
-// export const startClock = () => ({ type: 'start-clock' })
-// export const pauseClock = () => ({ type: 'pause-clock' })
-// export const rewindClock = () => ({ type: 'rewind-clock' })
-
-// saga
-export function* rootSaga () {
-  //yield takeLatest(['start-clock', 'pause-clock', 'rewind-clock'], handleClockAction)
-}

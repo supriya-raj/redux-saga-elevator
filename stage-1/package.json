@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.js",
-    "start": "NODE_ENV=development node_modules/.bin/webpack-dev-server --config webpack.config.js --progress --colors"
+    "start": "NODE_ENV=development node_modules/.bin/webpack-dev-server --config webpack.config.js --progress --colors --port 5000"
   },
   "devDependencies": {
     "babel-core": "6.26.3",
